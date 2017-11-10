@@ -1,44 +1,43 @@
 <template>
-  <tr id="dataRow">
+  <tr>
     <td>
-      {{index}}
+       {{indexData + 1}}
     </td>
     <td>
-      <input v-model="name" placeholder="Введите наименование">
+      <input v-model="nameData" placeholder="Введите наименование">
     </td>
     <td>
-      <input v-model="amount" placeholder="Введите количество">      
+      <input v-model="amountData" placeholder="Введите количество">      
     </td>
     <td>
-      <input v-model="price" placeholder="Введите цену">
+      <input v-model="priceData" placeholder="Введите цену">
     </td>
     <td>
-      <button v-on:click="addNewItem">Добавить</button>
+      <button v-on:click="deleteItem">Удалить</button>
     </td>    
   </tr>
 </template>
 
 <script>
 export default {
-  props: {
-    rowData: Array
-  },
   name: 'dataRow',
+  props: {
+    rowData: Object
+},
+
   data () {
+
     return {
-      name: '',
-      amount: '',
-      price:''  
+      indexData: +this.rowData.index,
+      nameData: this.rowData.name,
+      amountData: +this.rowData.amount,
+      priceData: +this.rowData.price
     }
-  },
+  },  
+
   methods:{
-    addNewItem: function() {
-      console.log(this.name, ' ', this.amount, ' ', this.price);
-      this.$emit('newItemAdded', {
-        name: this.name, 
-        amount: this.amount,
-        price: this.price
-      })
+    deleteItem: function() {
+      this.$emit('deleteItem', +this.indexData)
     }
   }  
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h5> Накладная </h5>
+    <h2> Накладная </h2>
 
     <table>
     	<thead>
@@ -11,11 +11,18 @@
     			<th>Цена</th>
     		</tr>
     	</thead>
-    	<input-row v-on:newItemAdded="addNewItem"></input-row>
+
+        <data-row 
+          v-for="rowData in rowsData" 
+          :rowData="rowData"
+          v-on:deleteItem="deleteItem">
+        </data-row>
+    	
         <tfoot>
+        	<input-row v-on:newItemAdded="addNewItem"></input-row>
         	<tr>
     			<td colspan="3">ИТОГО</td>
-    			<td>111</td>
+    			<td>{{totalSum}}</td>
     		</tr>
         </tfoot>
     </table>
@@ -40,12 +47,21 @@ export default {
       rowsData: []
     }
   },
+  computed: {
+    totalSum: function () {
+      var sum = 0
 
+      this.rowsData.forEach((item)=>{sum += (+item.price)*(+item.amount)} )
+      return sum
+    }
+  },
   methods: {
     addNewItem: function (obj) {
-      obj.index = this.rowsData.lendth	
+      obj.index = this.rowsData.length	
       this.rowsData.push(obj)
-      console.log(this.rowsData)
+    },
+    deleteItem: function (index) {	
+      this.rowsData.splice(index, 1)
     }
   }
 }

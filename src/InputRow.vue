@@ -28,12 +28,14 @@ export default {
   },
   methods:{
     addNewItem: function() {
-      console.log(this.name, ' ', this.amount, ' ', this.price);
       this.$emit('newItemAdded', {
         name: this.name, 
         amount: this.amount,
         price: this.price
       })
+      this.name = '';
+      this.amount = '';
+      this.price = '';      
     }
   }  
 }
