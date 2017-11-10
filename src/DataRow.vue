@@ -4,13 +4,13 @@
        {{indexData + 1}}
     </td>
     <td>
-      <input v-model="nameData" placeholder="Введите наименование">
+      <input v-model="nameData" placeholder="Введите наименование" @change="renewRowData">
     </td>
     <td>
-      <input v-model="amountData" placeholder="Введите количество">      
+      <input v-model="amountData" placeholder="Введите количество" @change="renewRowData">      
     </td>
     <td>
-      <input v-model="priceData" placeholder="Введите цену">
+      <input v-model="priceData" placeholder="Введите цену" @change="renewRowData">
     </td>
     <td>
       <button v-on:click="deleteItem">Удалить</button>
@@ -23,7 +23,7 @@ export default {
   name: 'dataRow',
   props: {
     rowData: Object
-},
+  },
 
   data () {
 
@@ -38,6 +38,16 @@ export default {
   methods:{
     deleteItem: function() {
       this.$emit('deleteItem', +this.indexData)
+    },
+    renewRowData: function(e) {
+      console.log('Data changed to ----> ', e.target.value, this.priceData)
+      var newDataObj = {
+        index: this.indexData,
+        name:this.nameData,
+        amount: this.amountData,
+        price: this.priceData
+      } 
+      this.$emit('rowDataChanged', newDataObj)
     }
   }  
 }

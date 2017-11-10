@@ -11,13 +11,14 @@
     			<th>Цена</th>
     		</tr>
     	</thead>
-
-        <data-row 
-          v-for="rowData in rowsData" 
-          :rowData="rowData"
-          v-on:deleteItem="deleteItem">
-        </data-row>
-    	
+        <tbody> 
+          <data-row 
+            v-for="rowData in rowsData" 
+            :rowData="rowData"
+            v-on:rowDataChanged="rowDataChanged"
+            v-on:deleteItem="deleteItem">
+          </data-row>
+    	</tbody>
         <tfoot>
         	<input-row v-on:newItemAdded="addNewItem"></input-row>
         	<tr>
@@ -35,13 +36,14 @@ import row from './SimpleRow.vue'
 import inputRow from './InputRow.vue'
 import dataRow from './DataRow.vue'
 
-export default {	
+export default {	 
+  name: 'app',
   components: {
     'my-row': row,
     'data-row': dataRow,
     'input-row': inputRow
-  }, 
-  name: 'app',
+  },
+  
   data () {
     return {
       rowsData: []
@@ -59,6 +61,9 @@ export default {
     addNewItem: function (obj) {
       obj.index = this.rowsData.length	
       this.rowsData.push(obj)
+    },
+    rowDataChanged: function (dataObj) {	
+      this.rowsData.splice((+dataObj.index), 1, dataObj)     
     },
     deleteItem: function (index) {	
       this.rowsData.splice(index, 1)
