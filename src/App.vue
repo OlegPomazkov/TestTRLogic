@@ -5,10 +5,10 @@
     <table>
       <thead>
       	<tr>
-      	  <th>№</th>
-    	  <th>Наименование</th>
-    	  <th>Количество</th>
-    	  <th>Цена</th>
+      	  <th class="n">№</th>
+    	  <th class="name">Наименование</th>
+    	  <th class="amount">Количество</th>
+    	  <th class="price">Цена</th>
     	</tr>
       </thead>
       <tbody> 
@@ -22,15 +22,15 @@
       <tfoot>
        	<input-row v-on:newItemAdded="addNewItem"></input-row>
         <tr>
-    	  <td colspan="3">ИТОГО</td>
-    	  <td>{{totalSum}}</td>
+    	  <td class="total name" colspan="3">ИТОГО</td>
+    	  <td class="total price">{{totalSum}}</td>
     	</tr>
       </tfoot>
     </table>
 
   </div>
 </template>
-
+<!-- _________________________________________________________________________________________ -->
 <script>
 
 import inputRow from './InputRow.vue'
@@ -71,7 +71,7 @@ export default {
   }
 }
 </script>
-
+<!-- _________________________________________________________________________________________ -->
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -80,4 +80,52 @@ export default {
   margin-top: 60px;
 }
 
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+thead .n, 
+thead .name, 
+thead .amount, 
+thead .price,
+tfoot .total {
+	background-color: #d5d5d5;
+	color: #000;
+}
+
+tfoot .total.name {
+	text-align: left;
+	padding-left: 20px;
+}
+
+tbody .n, 
+tbody .name, 
+tbody .amount, 
+tbody .price {
+	background-color: #f5f5f5;
+}
+
+.n {
+	width: 40px;
+	text-align: center;
+}
+
+.name {
+	width: 250px;
+}
+
+.amount {
+	width: 100px;
+	text-align: center;
+}
+
+.price {
+	width: 100px;
+	text-align: center;
+}
+
+.button {
+	width: 100px;
+}
 </style>

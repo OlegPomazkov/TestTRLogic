@@ -1,21 +1,21 @@
 <template>
   <tr id="inputRow">
-    <td class="not-used"></td>
-    <td>
-      <input v-model="name" placeholder="Введите наименование">
+    <td class="not-used n"></td>
+    <td class="name">
+      <input v-model="name" placeholder="Наименование">
     </td>
-    <td>
-      <input v-model="amount" placeholder="Введите количество">      
+    <td class="amount">
+      <input v-model="amount" placeholder="Количество">      
     </td>
-    <td>
-      <input v-model="price" placeholder="Введите цену">
+    <td class="price">
+      <input v-model="price" placeholder="Цена">
     </td>
-    <td>
+    <td class="button">
       <button v-on:click="addNewItem">Добавить</button>
     </td>    
   </tr>
 </template>
-
+<!-- _________________________________________________________________________________________ -->
 <script>
 export default {
   name: 'inputRow',
@@ -42,11 +42,25 @@ export default {
   }  
 }
 </script>
-
+<!-- _________________________________________________________________________________________ -->
 <style>
 tr {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  color: #2c3e50;
   margin-top: 60px;
+}
+
+.name input {
+  width: 230px;
+}
+
+.price input,
+.amount input {
+  text-align: center;
+  font-weight: normal;
+  width: 130px;
+}
+
+tfoot button {
+  background-color: #8f8;
 }
 </style>

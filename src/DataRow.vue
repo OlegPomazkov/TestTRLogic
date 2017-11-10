@@ -1,23 +1,23 @@
 <template>
   <tr>
-    <td>
+    <td class="n">
        {{indexData + 1}}
     </td>
-    <td>
-      <input v-model="nameData" placeholder="Введите наименование" @change="renewRowData">
+    <td class="name">
+      <input v-model="nameData" placeholder="Наименование" @change="renewRowData">
     </td>
-    <td>
-      <input v-model="amountData" placeholder="Введите количество" @change="renewRowData">      
+    <td class="price">
+      <input v-model="amountData" placeholder="Количество" @change="renewRowData">      
     </td>
-    <td>
-      <input v-model="priceData" placeholder="Введите цену" @change="renewRowData">
+    <td class="amount">
+      <input v-model="priceData" placeholder="Цена" @change="renewRowData">
     </td>
-    <td>
+    <td class="button">
       <button v-on:click="deleteItem">Удалить</button>
     </td>    
   </tr>
 </template>
-
+<!-- _________________________________________________________________________________________ -->
 <script>
 export default {
   name: 'dataRow',
@@ -50,11 +50,26 @@ export default {
   }  
 }
 </script>
-
+<!-- _________________________________________________________________________________________ -->
 <style>
 tr {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #000;
+  font-weight: bold;
+}
+
+.name input {
+  width: 230px;
+}
+
+.price input,
+.amount input {
+  text-align: center;
+  font-weight: bold;
+  width: 130px;
+}
+
+button {
+  background-color: #f88;
 }
 </style>
