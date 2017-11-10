@@ -3,7 +3,6 @@
     <span>
       <input v-bind:value="msg" v-on:input="updateValue($event.target.value)">
     </span>
-<!--    <p>{{ msg }}</p> -->
   </div>
 </template>
 

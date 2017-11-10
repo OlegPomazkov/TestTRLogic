@@ -1,31 +1,51 @@
 <template>
   <div id="app">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <my-row :rowData ='rowData' v-on:valueChanged="changeInput" ></my-row>
+    <h5> Накладная </h5>
+
+    <table>
+    	<thead>
+    		<tr>
+    			<th>№</th>
+    			<th>Наименование</th>
+    			<th>Количество</th>
+    			<th>Цена</th>
+    		</tr>
+    	</thead>
+    	<input-row v-on:newItemAdded="addNewItem"></input-row>
+        <tfoot>
+        	<tr>
+    			<td colspan="3">ИТОГО</td>
+    			<td>111</td>
+    		</tr>
+        </tfoot>
+    </table>
+
   </div>
 </template>
 
 <script>
 import row from './SimpleRow.vue'
+import inputRow from './InputRow.vue'
+import dataRow from './DataRow.vue'
 
 export default {	
   components: {
-    'my-row': row
+    'my-row': row,
+    'data-row': dataRow,
+    'input-row': inputRow
   }, 
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      rowData: {
-      	a: 'some name'
-      }
+      rowsData: []
     }
   },
 
   methods: {
-    changeInput: function (obj) {
-      this.msg = obj.newValue
+    addNewItem: function (obj) {
+      obj.index = this.rowsData.lendth	
+      this.rowsData.push(obj)
+      console.log(this.rowsData)
     }
   }
 }
