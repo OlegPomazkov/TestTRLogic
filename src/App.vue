@@ -65,8 +65,14 @@ export default {
     rowDataChanged: function (dataObj) {	
       this.rowsData.splice((+dataObj.index), 1, dataObj)     
     },
-    deleteItem: function (index) {	
-      this.rowsData.splice(index, 1)
+    deleteItem: function (index) {
+      var that = this
+      var tempRows = this.rowsData.map( item => item)
+
+      this.rowsData = []  
+      tempRows.splice(index, 1)
+      tempRows.forEach((item, ind) => {item.index = ind})
+      setTimeout( () => {that.rowsData = tempRows.map( item => item)}, 10) 
     }
   }
 }
